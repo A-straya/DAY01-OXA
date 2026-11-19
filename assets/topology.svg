@@ -1,0 +1,126 @@
+<svg width="900" height="520" viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#010b0e"/>
+      <stop offset="55%" stop-color="#021a22"/>
+      <stop offset="100%" stop-color="#010b0e"/>
+    </linearGradient>
+    <linearGradient id="gGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffb0"/><stop offset="100%" stop-color="#4dffd1"/>
+    </linearGradient>
+    <linearGradient id="gBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00c8ff"/><stop offset="100%" stop-color="#0078d4"/>
+    </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowSm" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="2" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <clipPath id="fr"><rect width="900" height="520" rx="14"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#fr)">
+    <rect width="900" height="520" fill="url(#bg)"/>
+
+    <!-- faint hex rain background -->
+    <g font-family="Consolas,monospace" font-size="11" fill="#0a4a3a" opacity="0.5">
+      <text x="30" y="40">0x1A</text><text x="120" y="80">0xF2</text><text x="780" y="60">0x7C</text>
+      <text x="850" y="120">0x3D</text><text x="60" y="470">0xE9</text><text x="800" y="480">0x05</text>
+      <text x="400" y="30">0x8B</text><text x="500" y="500">0x44</text>
+      <animate attributeName="opacity" values="0.5;0.15;0.5" dur="3.5s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- grid floor -->
+    <g stroke="#0077ff" stroke-width="1" opacity="0.4">
+      <line x1="450" y1="260" x2="20" y2="500"/>
+      <line x1="450" y1="260" x2="210" y2="500"/>
+      <line x1="450" y1="260" x2="450" y2="500"/>
+      <line x1="450" y1="260" x2="690" y2="500"/>
+      <line x1="450" y1="260" x2="880" y2="500"/>
+    </g>
+    <g stroke="#00ffb0" stroke-width="1" opacity="0.3">
+      <line x1="100" y1="330" x2="800" y2="330"/>
+      <line x1="40" y1="400" x2="860" y2="400"/>
+      <animate attributeName="opacity" values="0.3;0.08;0.3" dur="2.2s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- top ticker -->
+    <text font-family="Consolas,monospace" font-size="12" fill="#00c8ff" letter-spacing="2" filter="url(#glowSm)">
+      <animate attributeName="x" values="900;-700" dur="9s" repeatCount="indefinite"/>
+      <tspan y="26">root@oxa:~# tail -f /var/log/traffic.log  ::  DNS query oxa.local OK  ::  DHCP lease 192.168.10.20 OK  ::  SMB auth j.martin OK  ::  awaiting day03_recon.sh</tspan>
+    </text>
+
+    <!-- connection paths -->
+    <path id="p-dc"   d="M 230,140 C 320,210 360,250 440,300" stroke="#0a4a3a" stroke-width="2.4" fill="none"/>
+    <path id="p-win"  d="M 670,140 C 580,210 540,250 460,300" stroke="#0a4a3a" stroke-width="2.4" fill="none"/>
+    <path id="p-kali" d="M 450,330 C 450,370 450,390 450,430" stroke="#3a1414" stroke-width="2" stroke-dasharray="7 7" fill="none">
+      <animate attributeName="stroke-dashoffset" values="0;28" dur="1.4s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- multi-pulse traffic: green (AD/DNS/DHCP) -->
+    <circle r="4.5" fill="#00ffb0" filter="url(#glow)">
+      <animateMotion dur="1.8s" repeatCount="indefinite"><mpath href="#p-dc"/></animateMotion>
+    </circle>
+    <circle r="3" fill="#4dffd1" filter="url(#glowSm)" opacity="0.8">
+      <animateMotion dur="1.8s" begin="0.5s" repeatCount="indefinite"><mpath href="#p-dc"/></animateMotion>
+    </circle>
+
+    <!-- blue pulses (client) -->
+    <circle r="4.5" fill="#00c8ff" filter="url(#glow)">
+      <animateMotion dur="2.3s" repeatCount="indefinite"><mpath href="#p-win"/></animateMotion>
+    </circle>
+    <circle r="3" fill="#8be6ff" filter="url(#glowSm)" opacity="0.8">
+      <animateMotion dur="2.3s" begin="0.7s" repeatCount="indefinite"><mpath href="#p-win"/></animateMotion>
+    </circle>
+
+    <!-- occasional red recon ping toward kali -->
+    <circle r="4" fill="#ff3b3b" filter="url(#glow)" opacity="0">
+      <animateMotion dur="1.4s" repeatCount="indefinite" begin="0s"><mpath href="#p-kali"/></animateMotion>
+      <animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.55;0.6;0.9;0.95;1" dur="5s" repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Switch -->
+    <g transform="translate(450,315)">
+      <circle r="36" fill="#031a1f" stroke="#0b5a50" stroke-width="2">
+        <animate attributeName="stroke" values="#0b5a50;#00ffb0;#0b5a50" dur="2.4s" repeatCount="indefinite"/>
+      </circle>
+      <text text-anchor="middle" y="-3" font-family="Consolas,monospace" font-size="12" font-weight="bold" fill="#d7fbf5">SWITCH</text>
+      <text text-anchor="middle" y="13" font-family="Consolas,monospace" font-size="9" fill="#5a7a85">core L2</text>
+    </g>
+
+    <!-- OXA-DC01 -->
+    <g transform="translate(230,140)">
+      <rect x="-86" y="-44" width="172" height="88" rx="12" fill="#031a1f" stroke="url(#gGreen)" stroke-width="1.8" filter="url(#glowSm)"/>
+      <circle cx="-70" cy="-30" r="4" fill="#00ffb0"><animate attributeName="opacity" values="1;0.2;1" dur="1.1s" repeatCount="indefinite"/></circle>
+      <text x="-58" y="-26" font-family="Consolas,monospace" font-size="9.5" fill="#00ffb0">ONLINE</text>
+      <text text-anchor="middle" y="-2" font-family="Consolas,monospace" font-size="14" font-weight="bold" fill="#d7fbf5">OXA-DC01</text>
+      <text text-anchor="middle" y="14" font-family="Consolas,monospace" font-size="10" fill="#5a7a85">Windows Server · 192.168.10.10</text>
+      <text text-anchor="middle" y="28" font-family="Consolas,monospace" font-size="9" fill="#4dffd1">AD · DNS · DHCP · IIS · SMB · FTP</text>
+    </g>
+
+    <!-- WIN10-CLIENT -->
+    <g transform="translate(670,140)">
+      <rect x="-86" y="-44" width="172" height="88" rx="12" fill="#031a1f" stroke="url(#gBlue)" stroke-width="1.8" filter="url(#glowSm)"/>
+      <circle cx="-70" cy="-30" r="4" fill="#00c8ff"><animate attributeName="opacity" values="1;0.2;1" dur="1.3s" repeatCount="indefinite"/></circle>
+      <text x="-58" y="-26" font-family="Consolas,monospace" font-size="9.5" fill="#00c8ff">ONLINE</text>
+      <text text-anchor="middle" y="-2" font-family="Consolas,monospace" font-size="14" font-weight="bold" fill="#d7fbf5">WIN10-CLIENT</text>
+      <text text-anchor="middle" y="14" font-family="Consolas,monospace" font-size="10" fill="#5a7a85">Windows 10 · 192.168.10.20</text>
+      <text text-anchor="middle" y="28" font-family="Consolas,monospace" font-size="9" fill="#8be6ff">domain-joined · OXA\j.martin</text>
+    </g>
+
+    <!-- KALI -->
+    <g transform="translate(450,462)" opacity="0.9">
+      <rect x="-90" y="-36" width="180" height="72" rx="12" fill="#1a0e0e" stroke="#ff3b3b" stroke-width="1.6" stroke-dasharray="6 5"/>
+      <circle cx="-74" cy="-22" r="4" fill="#ff3b3b"><animate attributeName="opacity" values="1;0.15;1" dur="0.9s" repeatCount="indefinite"/></circle>
+      <text x="-62" y="-18" font-family="Consolas,monospace" font-size="9.5" fill="#ff6b6b">STANDBY</text>
+      <text text-anchor="middle" y="4" font-family="Consolas,monospace" font-size="14" font-weight="bold" fill="#ffb3b3">KALI-ATK01</text>
+      <text text-anchor="middle" y="19" font-family="Consolas,monospace" font-size="9.5" fill="#8a5a5a">192.168.10.30 · armed for Day 03</text>
+    </g>
+
+    <!-- border -->
+    <rect x="1" y="1" width="898" height="518" rx="13" fill="none" stroke="url(#gBlue)" stroke-opacity="0.35" stroke-width="2"/>
+  </g>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYToxNzU4N2RmYy0zNTc2LTRhN2EtODM5ZC1hMGM2NWUzMDMwMTkAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaB5Sjs9ZYL1HB7nof+wTEyAAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDozNWY0MTRmMS0zZTc3LTQ1YmItYmVhYS1kNzM5MTRiZTMyOTZscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNoRB3ypRycZLKrTSPRpy5GBAAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggIGzFyXejZM8XIhBHBVRP8vS5NoE4hgKHl/vt9Wq5eKikZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaKRq24Fpfb0A2VH3Wc+/wDoAAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYIHM9KBv2rMxEiJzaJurMJjiaYsVuTKPLcdDt5biPPPNyZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GR5iZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOjE3NTg3ZGZjLTM1NzYtNGE3YS04MzlkLWEwYzY1ZTMwMzAxOS9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjM0MGY0ZTBjLTZjOTktNDkwZC05NDcxLTVlYzczOWUzNmZiNXJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCAgbMXJd6NkzxciEEcFVE/y9Lk2gTiGAoeX++31arl4qKJjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggPUiPzh2eO9d9743RlLqw7IXwOMToAmMktR3fDp1IjqqiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFgguUm4uzdvYrw6G00Wvz6AKvLSOMDCQuEcfk00zs+aluB0Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQFuDzR8E6x0JLV6uWV595H6B5WxrW/oQHLWrauDJRpH2T/5V3Mv15LhwroLnSjR+q+QtTMULVfK3nHsSaOvFuMo=</c2pa:manifest></metadata></svg>
