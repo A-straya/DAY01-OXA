@@ -1,3 +1,4 @@
+
 <p align="center">
   <img src="assets/day01.svg" alt="OXA — Day 01 Build" width="900">
 </p>
@@ -39,11 +40,11 @@ so that on **Day 03** our Kali box has something worth attacking.
 
 | | |
 |---|---|
-| **Build target** | Company OXA — `oxa.local` |
-| **Nodes** | Windows Server (DC) · Windows 10 (client) · Kali (standby) |
-| **Platform** | GNS3 + VMware Workstation |
-| **Day 01 goal** | AD DS, DNS, DHCP, file share, IIS, FTP — all live, all joined |
-| **Next** | Day 02 strips the hardening on purpose |
+|  **Build target** | Company OXA — `oxa.local` |
+|  **Nodes** | Windows Server (DC) · Windows 10 (client) · Kali (standby) |
+|  **Platform** | GNS3 + VMware Workstation |
+|  **Day 01 goal** | AD DS, DNS, DHCP, file share, IIS, FTP — all live, all joined |
+|  **Next** | Day 02 strips the hardening on purpose |
 
 ---
 
@@ -68,16 +69,17 @@ so that on **Day 03** our Kali box has something worth attacking.
    └────────────────────┘              └────────────────────────┘
 ```
 
-> ⚠️ Isolated lab network only. Never bridge this to a real LAN — it's going to be
+>  Isolated lab network only. Never bridge this to a real LAN — it's going to be
 > *deliberately* vulnerable by Day 02.
 
 <p align="center">
-  <a href="https://claude.ai/artifact/TgV4R1HAiZRKncVEwMtEZm">
+  <a href="https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html">
     <img src="https://img.shields.io/badge/▶%20OPEN-LIVE%20INTERACTIVE%20TOPOLOGY-00ffb0?style=for-the-badge&labelColor=011014">
   </a>
 </p>
 
-<p align="center"><sub>Click any node — switch, server, client, or Kali — to see its live IP, status, and running services. Green/cyan pulses trace real AD, DNS, DHCP and client traffic across the wire.</sub></p>
+<p align="center"><sub>Click any node — switch, server, client, or Kali — to see its live IP, status, and running services. Green/cyan pulses trace real AD, DNS, DHCP and client traffic across the wire.<br>
+Self-contained file, no backend — works locally (just open the .html) or hosted via GitHub Pages. See setup note below.</sub></p>
 
 ---
 
@@ -140,6 +142,20 @@ Get-ComputerInfo | Select CsDomain
 | 03 | `BREACH` | Kali recon (Nmap) → vuln scan → Metasploit exploitation → lateral movement → write-up |
 
 ---
+
+<details>
+<summary><b>⚙ Hosting the live topology yourself (GitHub Pages)</b></summary>
+
+<br>
+
+The diagram is a single self-contained `oxa_topology.html` — no server, no dependencies, nothing tied to any external service.
+
+1. Put the file at `topology/oxa_topology.html` in this repo (matches the link above — adjust the path if you place it elsewhere).
+2. Repo → **Settings** → **Pages** → under "Build and deployment", set Source to **Deploy from a branch**, branch `main`, folder `/ (root)` → Save.
+3. GitHub gives you a URL like `https://YOUR-USERNAME.github.io/oxa-pentesting-hardening/`. Swap that into the badge link above (append `topology/oxa_topology.html`).
+4. Or skip Pages entirely — just double-click the file locally, it opens and works fully offline in any browser.
+
+</details>
 
 <p align="center">
 <sub>Internal lab repo · Company OXA is a fictional pentest/hardening training target · Not a real organization</sub>
