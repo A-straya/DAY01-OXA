@@ -73,7 +73,7 @@ so that on **Day 03** our Kali box has something worth attacking.
 > *deliberately* vulnerable by Day 02.
 
 <p align="center">
-  <a href="https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html">
+  <a href="https://YOUR-USERNAME.github.io/oxa-pentesting-hardening/topology/oxa_topology.html">
     <img src="https://img.shields.io/badge/▶%20OPEN-LIVE%20INTERACTIVE%20TOPOLOGY-00ffb0?style=for-the-badge&labelColor=011014">
   </a>
 </p>
