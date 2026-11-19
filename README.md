@@ -131,21 +131,7 @@ Get-ComputerInfo | Select CsDomain
 
 ---
 
-<details>
-<summary><b>⚙ Hosting the live topology yourself (GitHub Pages)</b></summary>
 
-<br>
-
-`oxa_topology.html` is a single self-contained file — no server, no dependencies, nothing tied to any external service.
-
-1. Put the file at `topology/oxa_topology.html` in this repo.
-2. Repo → **Settings** → **Pages** → Source: **Deploy from a branch** → branch `main`, folder `/ (root)` → Save.
-3. GitHub will serve it at `https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html` — matches the badge above.
-4. Or skip Pages entirely — just open the file locally, it works fully offline in any browser.
-
-</details>
-
-<p align="center">
 <sub>🟢🔵🔴 Internal lab repo · Company OXA is a fictional pentest/hardening training target · Not a real organization<br>
 Maintained by <b>A-straya</b></sub>
 </p>
