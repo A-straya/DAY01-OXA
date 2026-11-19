@@ -1,89 +1,77 @@
-
 <p align="center">
   <img src="assets/day01.svg" alt="OXA — Day 01 Build" width="900">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/STATUS-INFRA%20ONLINE-00ffb0?style=for-the-badge&labelColor=011014">
-  <img src="https://img.shields.io/badge/DOMAIN-oxa.local-00c8ff?style=for-the-badge&labelColor=011014">
-  <img src="https://img.shields.io/badge/DAY-01%20%2F%2003-0078d4?style=for-the-badge&labelColor=011014">
-  <img src="https://img.shields.io/badge/THREAT-UNPATCHED-ff3b3b?style=for-the-badge&labelColor=011014">
+  <img src="https://img.shields.io/badge/STATUS-INFRA%20ONLINE-00ffb0?style=for-the-badge&labelColor=010b0e">
+  <img src="https://img.shields.io/badge/DOMAIN-oxa.local-00e5ff?style=for-the-badge&labelColor=010b0e">
+  <img src="https://img.shields.io/badge/DAY-01%20%2F%2003-0078d4?style=for-the-badge&labelColor=010b0e">
+  <img src="https://img.shields.io/badge/THREAT-UNPATCHED-ff3b3b?style=for-the-badge&labelColor=010b0e">
+  <img src="https://img.shields.io/badge/OPERATOR-A--straya-00ffb0?style=for-the-badge&labelColor=010b0e">
 </p>
 
 <h3 align="center">
 
 ```
-root@oxa:~# cat day01/mission.log
+root@oxa:~# ./boot_sequence.sh --day=01 --operator=A-straya
 ```
 
 </h3>
 
-<p align="center"><i>Stand up the target. Wire the network. Light up the services.<br>
-Day 2 breaks it on purpose. Day 3 we go hunting.</i></p>
+<p align="center"><i>A virgin server. An empty canvas. A company that doesn't exist yet.<br>
+By the end of today, it breathes. By Day 03, it bleeds.</i></p>
 
 <br>
 
 ```diff
-+ [BOOT]  OXA-DC01 .......................... ONLINE
-+ [BOOT]  WIN10-CLIENT ...................... ONLINE
-+ [BOOT]  KALI-ATK01 ........................ STANDBY (Day 03)
-! [NOTE]  Hardening: NOT YET APPLIED (intentional — see day02)
++ [BOOT]   OXA-DC01 ................................ ONLINE
++ [BOOT]   WIN10-CLIENT ............................ ONLINE
++ [BOOT]   KALI-ATK01 .............................. STANDBY — Day 03
+! [ALERT]  Hardening status: NONE (intentional — see day02)
+! [ALERT]  Attack surface:  GROWING
++ [AUTH]   Operator A-straya ....................... VERIFIED
 ```
 
 ---
 
 ## `0x00` — Briefing
 
-**Company OXA** just handed us a blank slate: one virgin Windows Server, one Windows 10 client, and an empty GNS3 canvas.
-Day 01's job is to turn that into a believable small-business network — real AD domain, real services, real traffic —
-so that on **Day 03** our Kali box has something worth attacking.
+**Company OXA** doesn't exist. We're building it from nothing: one blank Windows Server,
+one blank Windows 10 client, and an empty GNS3 canvas. By the time Day 01 closes, it's a real
+domain with real services and real traffic moving across the wire — a living target with
+a pulse, ready to be hunted on Day 03.
 
 | | |
 |---|---|
 |  **Build target** | Company OXA — `oxa.local` |
+|  **Operator** | `A-straya` |
 |  **Nodes** | Windows Server (DC) · Windows 10 (client) · Kali (standby) |
 |  **Platform** | GNS3 + VMware Workstation |
 |  **Day 01 goal** | AD DS, DNS, DHCP, file share, IIS, FTP — all live, all joined |
-|  **Next** | Day 02 strips the hardening on purpose |
+|  **Next** | Day 02 rips the hardening off on purpose |
 
 ---
 
-## `0x01` — Topology
+## `0x01` — Live Topology
 
-```
-                     ┌──────────────────┐
-                     │   Kali  Linux     │   (standby — Day 03)
-                     │  192.168.10.30    │
-                     └─────────┬─────────┘
-                               │
-                      ┌────────┴────────┐
-                      │   Ethernet SW   │
-                      └───┬─────────┬───┘
-             ┌────────────┘         └────────────┐
-   ┌─────────┴─────────┐              ┌──────────┴──────────┐
-   │  OXA-DC01          │              │  WIN10-CLIENT        │
-   │  Windows Server    │◄────AD──────►│  Windows 10           │
-   │  192.168.10.10/24  │   join/auth  │  192.168.10.20/24     │
-   │  DC · DNS · DHCP   │              │  (or DHCP leased)     │
-   │  IIS · SMB · FTP   │              │                        │
-   └────────────────────┘              └────────────────────────┘
-```
+<p align="center">
+  <img src="assets/topology.svg" alt="OXA live network topology" width="880">
+</p>
 
->  Isolated lab network only. Never bridge this to a real LAN — it's going to be
-> *deliberately* vulnerable by Day 02.
+<p align="center"><sub>🟢 green pulse = AD / DNS / DHCP traffic &nbsp;·&nbsp; 🔵 blue pulse = client requests &nbsp;·&nbsp; 🔴 red = Kali, standing by for Day 03</sub></p>
 
 <p align="center">
   <a href="https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html">
-    <img src="https://img.shields.io/badge/▶%20OPEN-LIVE%20INTERACTIVE%20TOPOLOGY-00ffb0?style=for-the-badge&labelColor=011014">
+    <img src="https://img.shields.io/badge/▶%20OPEN-CLICKABLE%20VERSION%20(INSPECT%20EACH%20NODE)-00e5ff?style=for-the-badge&labelColor=010b0e">
   </a>
 </p>
 
-<p align="center"><sub>Click any node — switch, server, client, or Kali — to see its live IP, status, and running services. Green/cyan pulses trace real AD, DNS, DHCP and client traffic across the wire.<br>
-Self-contained file, no backend — works locally (just open the .html) or hosted via GitHub Pages. See setup note below.</sub></p>
+> ⚠️ Isolated lab network only. Never bridge this to a real LAN — it's going to be
+> *deliberately* vulnerable by Day 02.
 
 ---
 
-## `0x02` — Build log
+## `0x02` — Build Log
 
 > Tick these off as you go. Full step-by-step is in `docs/OXA_Day1_Guide.pdf`.
 
@@ -124,11 +112,11 @@ Get-Service DNS, NTDS, Netlogon, DHCPServer
 Get-ComputerInfo | Select CsDomain
 ```
 
-```
-[OK]  oxa.local .............................. resolvable
-[OK]  \\OXA-DC01\Finance ..................... reachable
-[OK]  http://192.168.10.10 ................... 200 OK
-[OK]  WIN10-CLIENT joined to OXA ............. confirmed
+```diff
++ [OK]  oxa.local .............................. resolvable
++ [OK]  \\OXA-DC01\Finance ..................... reachable
++ [OK]  http://192.168.10.10 ................... 200 OK
++ [OK]  WIN10-CLIENT joined to OXA ............. confirmed
 ```
 
 ---
@@ -148,15 +136,17 @@ Get-ComputerInfo | Select CsDomain
 
 <br>
 
-The diagram is a single self-contained `oxa_topology.html` — no server, no dependencies, nothing tied to any external service.
+`oxa_topology.html` is a single self-contained file — no server, no dependencies, nothing tied to any external service.
 
-1. Put the file at `topology/oxa_topology.html` in this repo (matches the link above — adjust the path if you place it elsewhere).
-2. Repo → **Settings** → **Pages** → under "Build and deployment", set Source to **Deploy from a branch**, branch `main`, folder `/ (root)` → Save.
-3. GitHub gives you a URL like `https://YOUR-USERNAME.github.io/oxa-pentesting-hardening/`. Swap that into the badge link above (append `topology/oxa_topology.html`).
-4. Or skip Pages entirely — just double-click the file locally, it opens and works fully offline in any browser.
+1. Put the file at `topology/oxa_topology.html` in this repo.
+2. Repo → **Settings** → **Pages** → Source: **Deploy from a branch** → branch `main`, folder `/ (root)` → Save.
+3. GitHub will serve it at `https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html` — matches the badge above.
+4. Or skip Pages entirely — just open the file locally, it works fully offline in any browser.
 
 </details>
 
 <p align="center">
-<sub>Internal lab repo · Company OXA is a fictional pentest/hardening training target · Not a real organization</sub>
+<sub>🟢🔵🔴 Internal lab repo · Company OXA is a fictional pentest/hardening training target · Not a real organization<br>
+Maintained by <b>A-straya</b></sub>
 </p>
+
