@@ -1,0 +1,207 @@
+<svg width="900" height="260" viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" xmlns:c2pa="http://c2pa.org/manifest">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#011014"/>
+      <stop offset="55%" stop-color="#021a22"/>
+      <stop offset="100%" stop-color="#011014"/>
+    </linearGradient>
+
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffb0"/>
+      <stop offset="50%" stop-color="#4dffd1"/>
+      <stop offset="100%" stop-color="#00ffb0"/>
+    </linearGradient>
+
+    <linearGradient id="neonBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00c8ff"/>
+      <stop offset="100%" stop-color="#0077ff"/>
+    </linearGradient>
+
+    <linearGradient id="winBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#36c8ff"/>
+      <stop offset="100%" stop-color="#0078d4"/>
+    </linearGradient>
+
+    <filter id="glowGreen" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="glowBlue" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="glowRed" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="2.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <clipPath id="frame">
+      <rect x="0" y="0" width="900" height="260" rx="14"/>
+    </clipPath>
+
+    <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#011014" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#011014" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <!-- background -->
+    <rect width="900" height="260" fill="url(#bgGrad)"/>
+
+    <!-- perspective grid floor (blue) -->
+    <g stroke="#0077ff" stroke-width="1.1" opacity="0.5">
+      <line x1="450" y1="150" x2="40"  y2="258"/>
+      <line x1="450" y1="150" x2="190" y2="258"/>
+      <line x1="450" y1="150" x2="340" y2="258"/>
+      <line x1="450" y1="150" x2="450" y2="258"/>
+      <line x1="450" y1="150" x2="560" y2="258"/>
+      <line x1="450" y1="150" x2="710" y2="258"/>
+      <line x1="450" y1="150" x2="860" y2="258"/>
+    </g>
+    <g stroke="#00ffb0" stroke-width="1" opacity="0.4">
+      <line x1="120" y1="178" x2="780" y2="178"/>
+      <line x1="60"  y1="205" x2="840" y2="205"/>
+      <line x1="0"   y1="236" x2="900" y2="236"/>
+      <animate attributeName="opacity" values="0.4;0.18;0.4" dur="2.6s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- scanning horizontal beam -->
+    <rect x="0" y="-20" width="900" height="20" fill="#00ffb0" opacity="0.08">
+      <animate attributeName="y" values="-20;260" dur="4s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- top kicker line -->
+    <text x="40" y="46" font-family="Consolas, 'Courier New', monospace" font-size="13"
+          fill="#00c8ff" letter-spacing="3" filter="url(#glowBlue)">
+      PENTEST &amp; NETWORK SECURITY LAB
+      <animate attributeName="opacity" values="1;0.55;1" dur="2.4s" repeatCount="indefinite"/>
+    </text>
+
+    <!-- small red live-status dot -->
+    <circle cx="610" cy="42" r="5" fill="#ff3b3b" filter="url(#glowRed)">
+      <animate attributeName="opacity" values="1;0.25;1" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <text x="622" y="46" font-family="Consolas, monospace" font-size="11" fill="#ff6b6b" letter-spacing="1.5">
+      TARGET LIVE
+    </text>
+
+    <!-- main title OXA with red/cyan chromatic glitch -->
+    <g>
+      <text x="40" y="118" font-family="'Courier New', monospace" font-weight="bold"
+            font-size="64" fill="#ff3b3b" letter-spacing="4" opacity="0">
+        OXA
+        <animate attributeName="opacity" values="0;0;0.55;0;0;0" keyTimes="0;0.42;0.45;0.49;0.7;1"
+                  dur="3.2s" repeatCount="indefinite"/>
+        <animate attributeName="x" values="40;46;40" keyTimes="0;0.45;1" dur="3.2s" repeatCount="indefinite"/>
+      </text>
+      <g filter="url(#glowGreen)">
+        <text x="38" y="118" font-family="'Courier New', monospace" font-weight="bold"
+              font-size="64" fill="url(#neonGreen)" letter-spacing="4">OXA</text>
+      </g>
+    </g>
+
+    <!-- subtitle -->
+    <text x="40" y="150" font-family="Consolas, 'Courier New', monospace" font-size="17"
+          fill="url(#neonBlue)" letter-spacing="2" filter="url(#glowBlue)">
+      PENTESTING &amp; HARDENING
+    </text>
+
+    <!-- terminal box -->
+    <g font-family="Consolas, 'Courier New', monospace" font-size="14">
+      <rect x="38" y="172" width="560" height="62" rx="6" fill="#03090b" stroke="#00c8ff" stroke-opacity="0.45"/>
+      <circle cx="54" cy="186" r="4" fill="#ff5f56"/>
+      <circle cx="68" cy="186" r="4" fill="#ffbd2e"/>
+      <circle cx="82" cy="186" r="4" fill="#27c93f"/>
+
+      <!-- windows icon -->
+      <g transform="translate(96,180)">
+        <rect x="0"   y="0"   width="6.3" height="6.3" fill="url(#winBlue)"/>
+        <rect x="7.3" y="0"   width="6.3" height="6.3" fill="url(#winBlue)"/>
+        <rect x="0"   y="7.3" width="6.3" height="6.3" fill="url(#winBlue)"/>
+        <rect x="7.3" y="7.3" width="6.3" height="6.3" fill="url(#winBlue)"/>
+      </g>
+
+      <text x="118" y="212" fill="#00c8ff">
+        <tspan fill="#4dffd1">root@oxa</tspan><tspan fill="#5a7a85">:</tspan><tspan fill="#00c8ff">~#</tspan>
+        <tspan fill="#d7fbf5"> ./deploy_day01.sh --target=oxa.local</tspan>
+      </text>
+      <rect x="519" y="200" width="9" height="14" fill="#00ffb0">
+        <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+      </rect>
+
+      <text x="54" y="228" fill="#7CFFB2" font-size="12.5">
+        [OK] AD DS \u00b7 DNS \u00b7 DHCP \u00b7 IIS \u00b7 SMB &#8594; online
+        <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.3;0.45;0.85;0.9;1" dur="4.8s" repeatCount="indefinite"/>
+      </text>
+      <text x="54" y="228" fill="#ff6b6b" font-size="12.5">
+        [WARN] SMBv1 &amp; weak creds detected
+        <animate attributeName="opacity" values="0;0;0;1;1;0" keyTimes="0;0.5;0.55;0.6;0.95;1" dur="4.8s" repeatCount="indefinite"/>
+      </text>
+    </g>
+
+    <!-- status badge -->
+    <g transform="translate(700,190)">
+      <rect x="0" y="0" width="160" height="46" rx="23" fill="#011014" stroke="url(#neonBlue)" stroke-width="1.6"/>
+      <text x="80" y="20" text-anchor="middle" font-family="Consolas, monospace" font-size="10.5"
+            fill="#8fb3bd" letter-spacing="2">DAY</text>
+      <text x="80" y="37" text-anchor="middle" font-family="Consolas, monospace" font-weight="bold" font-size="17"
+            fill="url(#neonGreen)" filter="url(#glowGreen)">01 / BUILD</text>
+    </g>
+
+    <!-- small windows icon badge top-right, bigger, as a motif -->
+    <g transform="translate(830,30)" opacity="0.9">
+      <rect x="0"  y="0"  width="11" height="11" fill="url(#winBlue)"/>
+      <rect x="13" y="0"  width="11" height="11" fill="url(#winBlue)"/>
+      <rect x="0"  y="13" width="11" height="11" fill="url(#winBlue)"/>
+      <rect x="13" y="13" width="11" height="11" fill="url(#winBlue)"/>
+      <animateTransform attributeName="transform" type="translate"
+        values="830,30; 830,26; 830,30" dur="3.4s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- scanline texture -->
+    <g opacity="0.12">
+      <g fill="#000000">
+        <rect y="0" width="900" height="1"/><rect y="4" width="900" height="1"/><rect y="8" width="900" height="1"/>
+        <rect y="12" width="900" height="1"/><rect y="16" width="900" height="1"/><rect y="20" width="900" height="1"/>
+        <rect y="24" width="900" height="1"/><rect y="28" width="900" height="1"/><rect y="32" width="900" height="1"/>
+        <rect y="36" width="900" height="1"/><rect y="40" width="900" height="1"/><rect y="44" width="900" height="1"/>
+        <rect y="48" width="900" height="1"/><rect y="52" width="900" height="1"/><rect y="56" width="900" height="1"/>
+        <rect y="60" width="900" height="1"/><rect y="64" width="900" height="1"/><rect y="68" width="900" height="1"/>
+        <rect y="72" width="900" height="1"/><rect y="76" width="900" height="1"/><rect y="80" width="900" height="1"/>
+        <rect y="84" width="900" height="1"/><rect y="88" width="900" height="1"/><rect y="92" width="900" height="1"/>
+        <rect y="96" width="900" height="1"/><rect y="100" width="900" height="1"/><rect y="104" width="900" height="1"/>
+        <rect y="108" width="900" height="1"/><rect y="112" width="900" height="1"/><rect y="116" width="900" height="1"/>
+        <rect y="120" width="900" height="1"/><rect y="124" width="900" height="1"/><rect y="128" width="900" height="1"/>
+        <rect y="132" width="900" height="1"/><rect y="136" width="900" height="1"/><rect y="140" width="900" height="1"/>
+        <rect y="144" width="900" height="1"/><rect y="148" width="900" height="1"/><rect y="152" width="900" height="1"/>
+        <rect y="156" width="900" height="1"/><rect y="160" width="900" height="1"/><rect y="164" width="900" height="1"/>
+        <rect y="168" width="900" height="1"/><rect y="172" width="900" height="1"/><rect y="176" width="900" height="1"/>
+        <rect y="180" width="900" height="1"/><rect y="184" width="900" height="1"/><rect y="188" width="900" height="1"/>
+        <rect y="192" width="900" height="1"/><rect y="196" width="900" height="1"/><rect y="200" width="900" height="1"/>
+        <rect y="204" width="900" height="1"/><rect y="208" width="900" height="1"/><rect y="212" width="900" height="1"/>
+        <rect y="216" width="900" height="1"/><rect y="220" width="900" height="1"/><rect y="224" width="900" height="1"/>
+        <rect y="228" width="900" height="1"/><rect y="232" width="900" height="1"/><rect y="236" width="900" height="1"/>
+        <rect y="240" width="900" height="1"/><rect y="244" width="900" height="1"/><rect y="248" width="900" height="1"/>
+        <rect y="252" width="900" height="1"/><rect y="256" width="900" height="1"/>
+      </g>
+    </g>
+
+    <!-- vignette -->
+    <rect width="900" height="90" y="170" fill="url(#fade)"/>
+
+    <!-- border -->
+    <rect x="1" y="1" width="898" height="258" rx="13" fill="none" stroke="url(#neonBlue)" stroke-opacity="0.35" stroke-width="2"/>
+  </g>
+<metadata><c2pa:manifest>AAAWgmp1bWIAAAAeanVtZGMycGEAEQAQgAAAqgA4m3EDYzJwYQAAABZcanVtYgAAAEdqdW1kYzJtYQARABCAAACqADibcQN1cm46YzJwYTplOTNiNDk3OS01ZWQzLTRlNTgtYWZlNC0yMzJhNTQzZWQ4MTAAAAADl2p1bWIAAAApanVtZGMyYXMAEQAQgAAAqgA4m3EDYzJwYS5hc3NlcnRpb25zAAAAALxqdW1iAAAARGp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuaW5ncmVkaWVudC52MwAAAAAYYzJzaGCGMONn2nW6Qzp/uOPLAuoAAABwY2JvcqNpZGM6Zm9ybWF0bWltYWdlL3N2Zyt4bWxqaW5zdGFuY2VJRHgseG1wOmlpZDpkZmI0NTU0OC0wZWY1LTRlYzEtODAwMS1kZDYyZTcyZDA5YTFscmVsYXRpb25zaGlwaHBhcmVudE9mAAAB4mp1bWIAAABBanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5hY3Rpb25zLnYyAAAAABhjMnNodtW+aXRQxDa79HBnk2ChWgAAAZljYm9yomdhY3Rpb25zgqJmYWN0aW9ua2MycGEub3BlbmVkanBhcmFtZXRlcnOha2luZ3JlZGllbnRzgaJjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFggyS/YWNSnUeSzOn/S+jhI8OkX0dniZdI2xVVy1Z5ZwUekZmFjdGlvbngdY29tLmFudGhyb3BpYy5jbGF1ZGUucHJvdmlkZWRqcGFyYW1ldGVyc6F4H2NvbS5hbnRocm9waWMub3JpZ2luLWNvbmZpZGVuY2VndW5rbm93bmtkZXNjcmlwdGlvbnhmQ2xhdWRlIHByb3ZpZGVkIHRoaXMgZmlsZSBhdCB0aGUgcmVxdWVzdCBvZiBhIHVzZXIgYW5kIG1heSBoYXZlIGNyZWF0ZWQgb3IgbW9kaWZpZWQgdGhlIGZpbGUgY29udGVudHMubXNvZnR3YXJlQWdlbnShZG5hbWVmQ2xhdWRlcmFsbEFjdGlvbnNJbmNsdWRlZPUAAADIanVtYgAAAEBqdW1kY2JvcgARABCAAACqADibcRNjMnBhLmhhc2guZGF0YQAAAAAYYzJzaM56FxJubE/2r7cLAkcACZ4AAACAY2JvcqVjYWxnZnNoYTI1NmNwYWRMAAAAAAAAAAAAAAAAZGhhc2hYILf08tJtLk5/3uRkrfP+CePVe2THIzYnQ8O/OjAcqzFWZG5hbWVuanVtYmYgbWFuaWZlc3RqZXhjbHVzaW9uc4GiZXN0YXJ0GSnBZmxlbmd0aBkeBAAAAj5qdW1iAAAAJ2p1bWRjMmNsABEAEIAAAKoAOJtxA2MycGEuY2xhaW0udjIAAAACD2Nib3KlY2FsZ2ZzaGEyNTZpc2lnbmF0dXJleE1zZWxmI2p1bWJmPS9jMnBhL3VybjpjMnBhOmU5M2I0OTc5LTVlZDMtNGU1OC1hZmU0LTIzMmE1NDNlZDgxMC9jMnBhLnNpZ25hdHVyZWppbnN0YW5jZUlEeCx4bXA6aWlkOjZjYzI5MjFjLTBkZmUtNDFlZC1iMmZhLTM0ZDM2MTZmNDljMnJjcmVhdGVkX2Fzc2VydGlvbnODomN1cmx4LXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaW5ncmVkaWVudC52M2RoYXNoWCDJL9hY1KdR5LM6f9L6OEjw6RfR2eJl0jbFVXLVnlnBR6JjdXJseCpzZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmFjdGlvbnMudjJkaGFzaFggvXu5MSMmO0D9uxbFtYaSV6smVFQbAu/ZgqFzfwPnfrKiY3VybHgpc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5oYXNoLmRhdGFkaGFzaFggYjYzMW4L7W2uNioReHm4W7ly4nsFLctFw4qAJyiU1D90Y2xhaW1fZ2VuZXJhdG9yX2luZm+jZG5hbWVvQW50aHJvcGljIEZpbGVzZ3ZlcnNpb25lMS4wLjBrc3BlY1ZlcnNpb25lMi40LjAAABA4anVtYgAAAChqdW1kYzJjcwARABCAAACqADibcQNjMnBhLnNpZ25hdHVyZQAAABAIY2JvctKEWQISogEmGCFZAgowggIGMIIBjaADAgECAhRA5aAK7sI50L64g/oGQgU9Z1UTADAKBggqhkjOPQQDAzBJMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEuMCwGA1UEAxMlQW50aHJvcGljIENvbnRlbnQgQ3JlZGVudGlhbHMgUm9vdCBDQTAeFw0yNjA4MDcxODQzNTZaFw0yODA4MDYxOTQzNTZaMEQxFzAVBgNVBAoTDkFudGhyb3BpYywgUEJDMSkwJwYDVQQDEyBBbnRocm9waWMgQ2xhdWRlIENvbnRlbnQgU2lnbmluZzBZMBMGByqGSM49AgEGCCqGSM49AwEHA0IABJh6CmvLUBgFFNU0vUKlOVtE6djd17L5SuwX0LemFisBM3dkd/3cyjxFA3Qo5S46fX0/ihY0VZ7mfb9KF703t5OjWDBWMA4GA1UdDwEB/wQEAwIHgDAVBgNVHSUEDjAMBgorBgEEAYPoXgIBMAwGA1UdEwEB/wQCMAAwHwYDVR0jBBgwFoAUzlHiBIFOZFsj+OPEz5o+nMHXXMIwCgYIKoZIzj0EAwMDZwAwZAIwMXMdFJ4BetLLVY7ORuE9noqbbAZOZn/aArXyTwFAZfKrPzxF2vPoJNf1+UCdg1XGAjBwX1zd9WGqYkqmL5SFqw1QySjr1zJfpJM9+1rdDwSPLMOPOjKuiXjoU/pUUeG9RwmhY3BhZFkNngAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPZYQGtlqspwpdLhzvaEninLE6TGMJwOduTmym4IzIBxA+cxTDedbwFoQ3Qv6+K/q/2eFhhTgBBYvBu1lumgAoH/Iv8=</c2pa:manifest></metadata></svg>
