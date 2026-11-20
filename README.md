@@ -60,11 +60,6 @@ a pulse, ready to be hunted on Day 03.
 
 <p align="center"><sub>🟢 green pulse = AD / DNS / DHCP traffic &nbsp;·&nbsp; 🔵 blue pulse = client requests &nbsp;·&nbsp; 🔴 red = Kali, standing by for Day 03</sub></p>
 
-<p align="center">
-  <a href="https://A-straya.github.io/oxa-pentesting-hardening/topology/oxa_topology.html">
-    <img src="https://img.shields.io/badge/▶%20OPEN-CLICKABLE%20VERSION%20(INSPECT%20EACH%20NODE)-00e5ff?style=for-the-badge&labelColor=010b0e">
-  </a>
-</p>
 
 > ⚠️ Isolated lab network only. Never bridge this to a real LAN — it's going to be
 > *deliberately* vulnerable by Day 02.
